@@ -24,7 +24,7 @@ namespace Duomenys
                     Aprasymas = "Renginys įvykęs prieš 3 mėnesius",
                     Kategorija = "gerimai",
                     Miestas = "Vilnius",
-                    RenginioVieta = "Baras",
+                    RenginioVieta = "Mililitrai",
                 },
                 new Renginys
                 {
