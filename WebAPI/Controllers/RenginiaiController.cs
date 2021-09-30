@@ -20,10 +20,25 @@ namespace WebAPI.Controllers
         }
 
         // Endpoint skirtas vieno įrašo grąžinimui
+        // Pridėtas Mediator patternas grąžinimui
         [HttpGet("{id}")]
         public async Task<ActionResult<Renginys>> GetRenginys(Guid id)
         {
-            return Ok();
+            return await Mediator.Send(new Filtras.Query{Id = id});
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SukurtiRengini(Renginys renginys)
+        {
+            // Gražinu ok jeigu pavyko operacija
+            return Ok(await Mediator.Send(new Sukurti.Command{Renginys = renginys}));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> RedaguotiRengini(Guid id, Renginys renginys)
+        {
+            renginys.Id = id;
+            return Ok(await Mediator.Send(new Redaguoti.Command{Renginys = renginys}));
         }
     }
 }
