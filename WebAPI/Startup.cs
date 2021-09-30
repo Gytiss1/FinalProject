@@ -1,4 +1,6 @@
+using Aplikacija.Renginiai;
 using Duomenys;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +40,9 @@ namespace WebAPI
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
+            // Užregistruojamas Mediator servisas
+            // Nurodoma kur rasti užklausų Handlerius
+            services.AddMediatR(typeof(Sarasas.Handler).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
