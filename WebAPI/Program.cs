@@ -13,19 +13,22 @@ namespace WebAPI
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            // Sukuriame variable atsakingą už servisų išmetimą
+            // Sukuriame variable atsakingą už servisų išmetimą (host juos kaupia)
+            // using naudojamas išmesti servisams kai yra įvykdomas Main metodas
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
             try
             {
-                // Mechanizmas tikrinantis ar įmanoma sukurti duombazę
+                // Mechanizmas tikrinantis ar įmanoma sukurti/migruoti duombazę
+                // Duomenų kontekstas naudojamas kaip servisas
                  var context = services.GetRequiredService<DataContext>();
                  context.Database.Migrate();
             }
             catch (Exception ex)
             {
                 // Išvedamas klaidos pranešimas
+                // Naudojama Program klasė (ši) klaidos išvedimui
                 var logger = services.GetRequiredService<ILogger<Program>>();
                 logger.LogError(ex, "Įvyko klaida duomenų migracijoje");
             }
