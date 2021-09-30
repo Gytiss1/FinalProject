@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Controllers
 {
-    public class RenginiuController : PagrindinisApiController
+    [ApiController]
+    public class RenginiaiController : PagrindinisApiController
     {
         private readonly DataContext _context;
 
-        public RenginiuController(DataContext context)
+        // Įvedame duombazės kontekstą į API
+        public RenginiaiController(DataContext context)
         {
             _context = context;
         }

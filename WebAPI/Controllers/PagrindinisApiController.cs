@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
+    // Pagrindinis kontroleris leidžia globaliai konfigūruoti paveldinčius kontrolerius
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Produces("application/json")] // Priešpaskutinė Roberto paskaita (paskaitos vidurys)
     public class PagrindinisApiController : ControllerBase
     {
         
