@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Duomenys;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,9 @@ namespace WebAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        // Pridedame async, kad galėtumėme naudoti await komandą viduje (sulaukiama kol pakraunami duomenys)
+        // Programa nėra vykdoma, kol neįvykdytos await komandos
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             // Sukuriame variable atsakingą už servisų išmetimą (host juos kaupia)
@@ -23,7 +26,8 @@ namespace WebAPI
                 // Mechanizmas tikrinantis ar įmanoma sukurti/migruoti duombazę
                 // Duomenų kontekstas naudojamas kaip servisas
                  var context = services.GetRequiredService<DataContext>();
-                 context.Database.Migrate();
+                 await context.Database.MigrateAsync();
+                 await PradiniaiDuomenys.SeedData(context);
             }
             catch (Exception ex)
             {
@@ -34,7 +38,7 @@ namespace WebAPI
             }
 
             // Programos paleidimas
-            host.Run();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
