@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import { Header, List, ListItem } from 'semantic-ui-react';
 
 function App() {
   const [renginiai, setRenginiai] = useState([]);
@@ -16,17 +17,15 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <ul>
+    <div>
+      <Header as='h2' icon='hand spock' content='Ką veikti Lietuvoje?' />
+        <List>
           {renginiai.map((renginys:any) => (
-            <li key={renginys.id}>
+            <ListItem key={renginys.id}>
               {renginys.pavadinimas}
-            </li>
+            </ListItem>
           ))}
-        </ul>
-      </header>
+        </List>
     </div>
   );
 }
