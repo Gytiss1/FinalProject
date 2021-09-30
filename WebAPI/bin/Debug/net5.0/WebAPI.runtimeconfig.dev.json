@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Elina\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Elina\\.nuget\\packages"
+    ]
+  }
+}

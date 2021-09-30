@@ -1,0 +1,17 @@
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Aplikacija.deps.json
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Aplikacija.dll
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\ref\Aplikacija.dll
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Aplikacija.pdb
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Domenas.dll
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Duomenys.dll
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Duomenys.pdb
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\bin\Debug\net5.0\Domenas.pdb
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.csproj.AssemblyReference.cache
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.AssemblyInfoInputs.cache
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.AssemblyInfo.cs
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.csproj.CoreCompileInputs.cache
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.csproj.CopyComplete
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.dll
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\ref\Aplikacija.dll
+C:\Users\Elina\Desktop\.NET Akademija\FinalProject\Aplikacija\obj\Debug\net5.0\Aplikacija.pdb
