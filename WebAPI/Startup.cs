@@ -27,6 +27,7 @@ namespace WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
             // Nustatomas kelias iki duombazės pagal nutylėjimą
+            // Naudojamas Sqlite Explorer ir NuGet package
             services.AddDbContext<DataContext>(opt =>
             {
                 opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
