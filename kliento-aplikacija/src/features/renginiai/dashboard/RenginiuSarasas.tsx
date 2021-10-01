@@ -20,7 +20,7 @@ export default function RenginiuSarasas({renginiai}: Props) {
                                 <div>{renginys.renginioVieta}, {renginys.miestas}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated='right' content='View' color='google plus'/>
+                                <Button floated='right' content='Peržiūrėti' color='google plus'/>
                                 <Label basic content={renginys.kategorija}/>
                             </Item.Extra>
                         </Item.Content>

@@ -2,6 +2,7 @@ import React from "react";
 import { Grid } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
 import RenginioDetales from "../detales/RenginioDetales";
+import RenginioForma from "../forma/RenginioForma";
 import RenginiuSarasas from "./RenginiuSarasas";
 
 interface Props {
@@ -17,6 +18,7 @@ export default function RenginiuLentele({renginiai}: Props){
             <Grid.Column width='6'>
                 {renginiai[0] &&
                 <RenginioDetales renginys={renginiai[0]}/>}
+                <RenginioForma/>
             </Grid.Column>
         </Grid>
     )

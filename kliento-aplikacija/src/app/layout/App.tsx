@@ -8,6 +8,7 @@ import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele'
 
 function App() {
   const [renginiai, setRenginiai] = useState<Renginys[]>([]);
+  const [pasirinktasRenginys, sePasirinktasRenginys] = useState<Renginys | undefined>(undefined);
 
   useEffect(() => {
     axios.get<Renginys[]>('http://localhost:5000/api/renginiai').then(response => {
