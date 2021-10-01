@@ -8,7 +8,7 @@ import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele'
 
 function App() {
   const [renginiai, setRenginiai] = useState<Renginys[]>([]);
-  const [pasirinktasRenginys, sePasirinktasRenginys] = useState<Renginys | undefined>(undefined);
+  const [pasirinktasRenginys, setPasirinktasRenginys] = useState<Renginys | undefined>(undefined);
 
   useEffect(() => {
     axios.get<Renginys[]>('http://localhost:5000/api/renginiai').then(response => {
@@ -17,11 +17,25 @@ function App() {
     })
   }, [])
 
+  // surandu rengini pagal id
+  function handlePasirinktasRenginys(id: string){
+    setPasirinktasRenginys(renginiai.find(x => x.id === id))
+  }
+    
+  function handleAtsauktiPasirinktasRenginys(){
+    setPasirinktasRenginys(undefined);
+  }
+
   return (
     <Fragment>
       <NavBar/>
       <Container style={{marginTop:'5em'}}>
-        <RenginiuLentele renginiai={renginiai} />
+        <RenginiuLentele 
+          renginiai={renginiai}
+          pasirinktasRenginys={pasirinktasRenginys}
+          pasirinktiRengini={handlePasirinktasRenginys}
+          atsauktiPasirinktaRengini={handleAtsauktiPasirinktasRenginys}
+        />
         </Container>
     </Fragment>
   );

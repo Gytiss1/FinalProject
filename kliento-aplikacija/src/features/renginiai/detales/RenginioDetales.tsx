@@ -3,12 +3,13 @@ import { Button, Card, Icon, Image } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
 
 interface Props {
-    renginys: Renginys
+    renginys: Renginys;
+    atsauktiPasirinktaRengini: () => void;
 }
 
-export default function RenginioDetales({renginys}: Props) {
+export default function RenginioDetales({renginys,atsauktiPasirinktaRengini}: Props) {
     return (
-        <Card>
+        <Card fluid>
             <Image src={`/assets/kategorijuVaizdai/${renginys.kategorija}.jpg`} />
             <Card.Content>
                 <Card.Header>{renginys.pavadinimas}</Card.Header>
@@ -22,7 +23,7 @@ export default function RenginioDetales({renginys}: Props) {
             <Card.Content extra>
                 <Button.Group widths='2'>
                     <Button basic color='orange' content='Redaguoti'/>
-                    <Button basic color='red' content='Atšaukti'/>
+                    <Button onClick={atsauktiPasirinktaRengini} basic color='red' content='Atšaukti'/>
                 </Button.Group>
             </Card.Content>
         </Card>

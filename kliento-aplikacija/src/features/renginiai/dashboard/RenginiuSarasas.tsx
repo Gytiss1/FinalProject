@@ -3,10 +3,11 @@ import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
 
 interface Props {
-    renginiai: Renginys[]
+    renginiai: Renginys[];
+    pasirinktiRengini: (id: string) => void;
 }
 
-export default function RenginiuSarasas({renginiai}: Props) {
+export default function RenginiuSarasas({renginiai, pasirinktiRengini}: Props) {
     return (
         <Segment>
             <Item.Group divided>
@@ -20,7 +21,7 @@ export default function RenginiuSarasas({renginiai}: Props) {
                                 <div>{renginys.renginioVieta}, {renginys.miestas}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated='right' content='Peržiūrėti' color='google plus'/>
+                                <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='google plus'/>
                                 <Label basic content={renginys.kategorija}/>
                             </Item.Extra>
                         </Item.Content>

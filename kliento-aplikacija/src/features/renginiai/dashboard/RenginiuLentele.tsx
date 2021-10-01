@@ -7,17 +7,25 @@ import RenginiuSarasas from "./RenginiuSarasas";
 
 interface Props {
     renginiai: Renginys[];
+    pasirinktasRenginys: Renginys | undefined;
+    pasirinktiRengini: (id: string) => void;
+    atsauktiPasirinktaRengini: () => void;
 }
 
-export default function RenginiuLentele({renginiai}: Props){
+export default function RenginiuLentele({
+    renginiai, 
+    pasirinktasRenginys, 
+    pasirinktiRengini, 
+    atsauktiPasirinktaRengini
+    }: Props){
     return (
         <Grid>
             <Grid.Column width='10'>
-            <RenginiuSarasas renginiai={renginiai} />
+            <RenginiuSarasas renginiai={renginiai} pasirinktiRengini={pasirinktiRengini} />
             </Grid.Column>
             <Grid.Column width='6'>
-                {renginiai[0] &&
-                <RenginioDetales renginys={renginiai[0]}/>}
+                {pasirinktasRenginys &&
+                <RenginioDetales renginys={pasirinktasRenginys} atsauktiPasirinktaRengini={atsauktiPasirinktaRengini}/>}
                 <RenginioForma/>
             </Grid.Column>
         </Grid>
