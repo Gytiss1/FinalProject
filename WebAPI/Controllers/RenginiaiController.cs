@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> IstrintiRengini(Guid id)
         {
             // Grąžinu ok jeigu pavyksta
-            return Ok(await Mediator.Send(new Istrinti.Command{Id = id});
+            return Ok(await Mediator.Send(new Istrinti.Command{Id = id}));
         }
     }
 }

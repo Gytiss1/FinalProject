@@ -23,9 +23,10 @@ namespace Aplikacija.Renginiai
             }
 
             // Grąžinamas sąrašas renginių aplikacijos sluoksnyje
+            // CancellationToken naudojamas jeigu kimba aplikacija ir norime ją nukillint (arba useris uždaro naršyklę)
             public async Task<List<Renginys>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Renginiai.ToListAsync();
+                return await _context.Renginiai.ToListAsync(cancellationToken);
             }
         }
     }
