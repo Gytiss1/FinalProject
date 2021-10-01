@@ -40,5 +40,12 @@ namespace WebAPI.Controllers
             renginys.Id = id;
             return Ok(await Mediator.Send(new Redaguoti.Command{Renginys = renginys}));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> IstrintiRengini(Guid id)
+        {
+            // Grąžinu ok jeigu pavyksta
+            return Ok(await Mediator.Send(new Istrinti.Command{Id = id});
+        }
     }
 }
