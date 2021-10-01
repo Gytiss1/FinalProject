@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using static Aplikacija.Priedai.Mapperis;
 
 namespace WebAPI
 {
@@ -43,6 +44,8 @@ namespace WebAPI
             // Užregistruojamas Mediator servisas
             // Nurodoma kur rasti užklausų Handlerius
             services.AddMediatR(typeof(Sarasas.Handler).Assembly);
+            // Užregistregistruojamas Automapperis
+            services.AddAutoMapper(typeof (MappingProfiles).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
