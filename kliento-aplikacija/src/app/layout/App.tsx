@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './styles.css';
 import axios from 'axios';
-import { Container, List } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import {Renginys} from '../layout/models/renginys';
 import NavBar from './NavBar';
 import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele';

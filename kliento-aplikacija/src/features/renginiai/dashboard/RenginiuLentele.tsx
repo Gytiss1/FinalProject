@@ -1,22 +1,17 @@
 import React from "react";
-import { Grid, List } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
+import RenginiuSarasas from "./RenginiuSarasas";
 
 interface Props {
     renginiai: Renginys[];
 }
 
-export default function RenginiuLentele(props: Props){
+export default function RenginiuLentele({renginiai}: Props){
     return (
         <Grid>
             <Grid.Column width='10'>
-            <List>
-                {props.renginiai.map(renginys => (
-                    <List.Item key={renginys.id}>
-                        {renginys.pavadinimas}
-                    </List.Item>
-                ))}
-            </List>
+            <RenginiuSarasas renginiai={renginiai} />
             </Grid.Column>
         </Grid>
     )
