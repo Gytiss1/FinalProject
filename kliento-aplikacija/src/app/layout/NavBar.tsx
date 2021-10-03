@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
 
-export default function NavBar() {
+interface Props {
+    atidarytiForma: () => void;
+}
+
+export default function NavBar({atidarytiForma}:Props) {
     return (
         <Menu inverted fixed='top'>
             <Container>
@@ -11,7 +15,7 @@ export default function NavBar() {
                 </Menu.Item>
                 <Menu.Item name='Renginiai'/>
                 <Menu.Item>
-                    <Button positive content='Sukurti renginį'/>
+                    <Button onClick={atidarytiForma} positive content='Sukurti renginį'/>
                 </Menu.Item>
             </Container>
         </Menu>

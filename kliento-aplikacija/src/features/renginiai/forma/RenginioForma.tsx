@@ -1,7 +1,13 @@
 import React from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
+import { Renginys } from "../../../app/layout/models/renginys";
 
-export default function RenginioForma(){
+interface Props {
+    renginys: Renginys | undefined;
+    uzdarytiForma: () => void;
+}
+
+export default function RenginioForma({renginys, uzdarytiForma}: Props){
     return (
         <Segment clearing>
             <Form>
@@ -12,7 +18,7 @@ export default function RenginioForma(){
                 <Form.Input placeholder='Miestas'/>
                 <Form.Input placeholder='Renginio vieta'/>
                 <Button floated='right' positive type='submit' content='Įrašyti'/>
-                <Button floated='right' type='button' content='Atšaukti'/>
+                <Button onClick={uzdarytiForma} floated='right' type='button' content='Atšaukti'/>
             </Form>
         </Segment>
     )
