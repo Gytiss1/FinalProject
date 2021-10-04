@@ -1,21 +1,26 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './styles.css';
-import axios from 'axios';
 import { Container } from 'semantic-ui-react';
 import {Renginys} from '../layout/models/renginys';
 import NavBar from './NavBar';
 import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele';
 import {v4 as uuid} from 'uuid';
+import agent from '../api/agent';
 
 function App() {
   const [renginiai, setRenginiai] = useState<Renginys[]>([]);
   const [pasirinktasRenginys, setPasirinktasRenginys] = useState<Renginys | undefined>(undefined);
   const [redagavimas, setRedagavimas] = useState(false);
 
+  // AXIOS
   useEffect(() => {
-    axios.get<Renginys[]>('http://localhost:5000/api/renginiai').then(response => {
-      console.log(response);  
-      setRenginiai(response.data);
+    agent.Renginiai.sarasas().then(atsakymas => {
+      let renginiai: Renginys[] = [];
+      atsakymas.forEach(renginys => {
+        renginys.data = renginys.data.split('T')[0];
+        renginiai.push(renginys);
+      })
+      setRenginiai(renginiai);
     })
   }, [])
 
