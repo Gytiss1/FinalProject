@@ -49,6 +49,10 @@ function App() {
     setPasirinktasRenginys(renginys);
   }
 
+  function handleIstrintiRengini(id:string){
+    setRenginiai([...renginiai.filter(x => x.id !== id)])
+  }
+
   return (
     <Fragment>
       <NavBar atidarytiForma={handleFormosAtidaryma}/>
@@ -62,6 +66,7 @@ function App() {
           atidarytiForma={handleFormosAtidaryma}
           uzdarytiForma={handleFormosUzdarymas}
           sukurtiArRedaguoti={handleSukurtiArPakeistiRengini}
+          istrintiRengini={handleIstrintiRengini}
         />
         </Container>
     </Fragment>

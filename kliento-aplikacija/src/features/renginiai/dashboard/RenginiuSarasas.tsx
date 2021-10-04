@@ -5,9 +5,10 @@ import { Renginys } from "../../../app/layout/models/renginys";
 interface Props {
     renginiai: Renginys[];
     pasirinktiRengini: (id: string) => void;
+    istrintiRengini: (id: string) => void;
 }
 
-export default function RenginiuSarasas({renginiai, pasirinktiRengini}: Props) {
+export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiRengini}: Props) {
     return (
         <Segment>
             <Item.Group divided>
@@ -22,6 +23,7 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini}: Props) {
                             </Item.Description>
                             <Item.Extra>
                                 <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='google plus'/>
+                                <Button onClick={() => istrintiRengini(renginys.id)} floated='right' content='Ištrinti' color='red'/>
                                 <Label basic content={renginys.kategorija}/>
                             </Item.Extra>
                         </Item.Content>

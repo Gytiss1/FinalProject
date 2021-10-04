@@ -14,6 +14,7 @@ interface Props {
     atidarytiForma: (id:string) => void;
     uzdarytiForma: () => void; 
     sukurtiArRedaguoti: (renginys: Renginys) => void;
+    istrintiRengini: (id: string) => void;
 }
 
 export default function RenginiuLentele({
@@ -24,12 +25,13 @@ export default function RenginiuLentele({
     redaguoti,
     atidarytiForma,
     uzdarytiForma,
-    sukurtiArRedaguoti }: Props) {
+    sukurtiArRedaguoti,
+    istrintiRengini }: Props) {
 
     return (
         <Grid>
             <Grid.Column width='10'>
-                <RenginiuSarasas renginiai={renginiai} pasirinktiRengini={pasirinktiRengini} />
+                <RenginiuSarasas renginiai={renginiai} pasirinktiRengini={pasirinktiRengini} istrintiRengini={istrintiRengini}/>
             </Grid.Column>
             <Grid.Column width='6'>
                 {pasirinktasRenginys && !redaguoti &&
