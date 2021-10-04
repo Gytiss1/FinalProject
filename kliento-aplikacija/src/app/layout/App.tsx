@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import './styles.css';
 import axios from 'axios';
-import { Container, StrictGridColumnProps } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import {Renginys} from '../layout/models/renginys';
 import NavBar from './NavBar';
 import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele';
+import {v4 as uuid} from 'uuid';
 
 function App() {
   const [renginiai, setRenginiai] = useState<Renginys[]>([]);
@@ -43,7 +44,7 @@ function App() {
   // tikrinu ar yra toks renginys duombazeje ir jeigu yra, pakeiciu ji tokiu pat objektu is formos
   function handleSukurtiArPakeistiRengini(renginys: Renginys) {
     renginys.id ? setRenginiai([...renginiai.filter(x => x.id !== renginys.id), renginys])
-    : setRenginiai([...renginiai, renginys]);
+    : setRenginiai([...renginiai, {...renginys, id: uuid()}]);
     setRedagavimas(false);
     setPasirinktasRenginys(renginys);
   }

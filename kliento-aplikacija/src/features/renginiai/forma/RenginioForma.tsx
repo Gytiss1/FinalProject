@@ -42,7 +42,7 @@ export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiFo
                 <Form.Input placeholder='Kategorija' value={renginys.kategorija} name='kategorija' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Data' value={renginys.data} name='data' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Miestas' value={renginys.miestas} name='miestas' onChange={handleIrasoPakeitimas}/>
-                <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginiovieta' onChange={handleIrasoPakeitimas}/>
+                <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginioVieta' onChange={handleIrasoPakeitimas}/>
                 <Button floated='right' positive type='submit' content='Įrašyti'/>
                 <Button onClick={uzdarytiForma} floated='right' type='button' content='Atšaukti'/>
             </Form>
