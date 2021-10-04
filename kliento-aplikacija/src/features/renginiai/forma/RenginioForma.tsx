@@ -5,9 +5,10 @@ import { Renginys } from "../../../app/layout/models/renginys";
 interface Props {
     renginys: Renginys | undefined;
     uzdarytiForma: () => void;
+    sukurtiArRedaguoti: (renginys: Renginys) => void;
 }
 
-export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiForma}: Props){
+export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiForma, sukurtiArRedaguoti}: Props){
 
     // suteikiu pradine busena formai, kad React galetu tikrinti ir irasyti kas ivedama
     const pradineBusena = pasirinktasRenginys ?? {
@@ -23,7 +24,7 @@ export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiFo
     const [renginys, setRenginys] = useState(pradineBusena);
 
     function handleIrasyti(){
-        console.log(renginys);
+        sukurtiArRedaguoti(renginys);
     }
 
     // funkcija sekanti pakeitimus irasymo lauke ir juos submitinus

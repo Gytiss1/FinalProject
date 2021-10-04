@@ -2,7 +2,7 @@
 export interface Renginys {
         id: string;
         pavadinimas: string;
-        data: Date;
+        data: string;
         aprasymas: string;
         kategorija: string;
         miestas: string;

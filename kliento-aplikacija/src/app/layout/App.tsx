@@ -40,6 +40,14 @@ function App() {
     setRedagavimas(false);
   }
 
+  // tikrinu ar yra toks renginys duombazeje ir jeigu yra, pakeiciu ji tokiu pat objektu is formos
+  function handleSukurtiArPakeistiRengini(renginys: Renginys) {
+    renginys.id ? setRenginiai([...renginiai.filter(x => x.id !== renginys.id), renginys])
+    : setRenginiai([...renginiai, renginys]);
+    setRedagavimas(false);
+    setPasirinktasRenginys(renginys);
+  }
+
   return (
     <Fragment>
       <NavBar atidarytiForma={handleFormosAtidaryma}/>
@@ -52,6 +60,7 @@ function App() {
           redaguoti={redagavimas}
           atidarytiForma={handleFormosAtidaryma}
           uzdarytiForma={handleFormosUzdarymas}
+          sukurtiArRedaguoti={handleSukurtiArPakeistiRengini}
         />
         </Container>
     </Fragment>
