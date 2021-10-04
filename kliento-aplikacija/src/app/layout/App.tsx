@@ -24,6 +24,7 @@ function App() {
   }
   
   // nunulinu id ir detaes dingsta
+  // https://stackoverflow.com/questions/24502898/show-or-hide-element-in-react
   function handleAtsauktiPasirinktasRenginys(){
     setPasirinktasRenginys(undefined);
   }
