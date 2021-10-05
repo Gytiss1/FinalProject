@@ -6,9 +6,10 @@ interface Props {
     renginys: Renginys | undefined;
     uzdarytiForma: () => void;
     sukurtiArRedaguoti: (renginys: Renginys) => void;
+    irasymas: boolean;
 }
 
-export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiForma, sukurtiArRedaguoti}: Props){
+export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiForma, sukurtiArRedaguoti, irasymas}: Props){
 
     // suteikiu pradine busena formai, kad React galetu tikrinti ir irasyti kas ivedama
     const pradineBusena = pasirinktasRenginys ?? {
@@ -43,7 +44,7 @@ export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiFo
                 <Form.Input placeholder='Data' type='date' value={renginys.data} name='data' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Miestas' value={renginys.miestas} name='miestas' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginioVieta' onChange={handleIrasoPakeitimas}/>
-                <Button floated='right' positive type='submit' content='Įrašyti'/>
+                <Button loading={irasymas} floated='right' positive type='submit' content='Įrašyti'/>
                 <Button onClick={uzdarytiForma} floated='right' type='button' content='Atšaukti'/>
             </Form>
         </Segment>

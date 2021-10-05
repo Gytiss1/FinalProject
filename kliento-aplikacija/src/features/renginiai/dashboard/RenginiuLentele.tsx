@@ -15,6 +15,7 @@ interface Props {
     uzdarytiForma: () => void; 
     sukurtiArRedaguoti: (renginys: Renginys) => void;
     istrintiRengini: (id: string) => void;
+    irasymas: boolean;
 }
 
 export default function RenginiuLentele({
@@ -26,7 +27,8 @@ export default function RenginiuLentele({
     atidarytiForma,
     uzdarytiForma,
     sukurtiArRedaguoti,
-    istrintiRengini }: Props) {
+    istrintiRengini,
+    irasymas }: Props) {
 
     return (
         <Grid>
@@ -46,6 +48,7 @@ export default function RenginiuLentele({
                         uzdarytiForma={uzdarytiForma}
                         renginys={pasirinktasRenginys}
                         sukurtiArRedaguoti={sukurtiArRedaguoti}
+                        irasymas={irasymas}
                     />}
             </Grid.Column>
         </Grid>
