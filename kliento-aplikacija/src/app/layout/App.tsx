@@ -13,7 +13,7 @@ function App() {
   const [pasirinktasRenginys, setPasirinktasRenginys] = useState<Renginys | undefined>(undefined);
   const [redagavimas, setRedagavimas] = useState(false);
   const [krovimas, setKrovimas] = useState(true);
-  const [irasyti, setIrasyti] = useState(false)
+  const [irasyti, setIrasyti] = useState(false);
 
   // AXIOS
   useEffect(() => {
@@ -73,7 +73,11 @@ function App() {
   }
 
   function handleIstrintiRengini(id:string){
-    setRenginiai([...renginiai.filter(x => x.id !== id)])
+    setIrasyti(true);
+    agent.Renginiai.istrinti(id).then(() => {
+      setRenginiai([...renginiai.filter(x => x.id !== id)]);
+      setIrasyti(false);
+    })
   }
 
   if (krovimas) return <Krovimasis content='Programa kraunama...' />

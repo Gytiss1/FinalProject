@@ -33,7 +33,11 @@ export default function RenginiuLentele({
     return (
         <Grid>
             <Grid.Column width='10'>
-                <RenginiuSarasas renginiai={renginiai} pasirinktiRengini={pasirinktiRengini} istrintiRengini={istrintiRengini}/>
+                <RenginiuSarasas 
+                    renginiai={renginiai} 
+                    pasirinktiRengini={pasirinktiRengini} 
+                    istrintiRengini={istrintiRengini} 
+                    irasymas={irasymas} />
             </Grid.Column>
             <Grid.Column width='6'>
                 {pasirinktasRenginys && !redaguoti &&

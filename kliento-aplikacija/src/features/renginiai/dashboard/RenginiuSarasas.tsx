@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
 
@@ -6,9 +6,17 @@ interface Props {
     renginiai: Renginys[];
     pasirinktiRengini: (id: string) => void;
     istrintiRengini: (id: string) => void;
+    irasymas: boolean;
 }
 
-export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiRengini}: Props) {
+export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiRengini, irasymas}: Props) {
+    const [target, setTarget] = useState('');
+
+    function handleRenginioIstrynimas(e: SyntheticEvent<HTMLButtonElement>, id:string) {
+        setTarget(e.currentTarget.name);
+        istrintiRengini(id);
+    }
+
     return (
         <Segment>
             <Item.Group divided>
@@ -23,7 +31,14 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiR
                             </Item.Description>
                             <Item.Extra>
                                 <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='google plus'/>
-                                <Button onClick={() => istrintiRengini(renginys.id)} floated='right' content='Ištrinti' color='red'/>
+                                <Button 
+                                    loading={irasymas && target === renginys.id} 
+                                    onClick={(e) => handleRenginioIstrynimas(e, renginys.id)} 
+                                    floated='right' 
+                                    content='Ištrinti' 
+                                    color='red'
+                                    name={renginys.id} 
+                                />
                                 <Label basic content={renginys.kategorija}/>
                             </Item.Extra>
                         </Item.Content>
