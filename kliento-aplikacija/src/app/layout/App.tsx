@@ -6,11 +6,13 @@ import NavBar from './NavBar';
 import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele';
 import {v4 as uuid} from 'uuid';
 import agent from '../api/agent';
+import Krovimasis from './Krovimasis';
 
 function App() {
   const [renginiai, setRenginiai] = useState<Renginys[]>([]);
   const [pasirinktasRenginys, setPasirinktasRenginys] = useState<Renginys | undefined>(undefined);
   const [redagavimas, setRedagavimas] = useState(false);
+  const [krovimas, setKrovimas] = useState(true);
 
   // AXIOS
   useEffect(() => {
@@ -21,6 +23,8 @@ function App() {
         renginiai.push(renginys);
       })
       setRenginiai(renginiai);
+      // paslepiu krovima suradus renginius
+      setKrovimas(false);
     })
   }, [])
 
@@ -57,6 +61,8 @@ function App() {
   function handleIstrintiRengini(id:string){
     setRenginiai([...renginiai.filter(x => x.id !== id)])
   }
+
+  if (krovimas) return <Krovimasis content='Programa kraunama...' />
 
   return (
     <Fragment>

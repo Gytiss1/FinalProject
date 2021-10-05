@@ -1,7 +1,24 @@
 import axios, { AxiosResponse } from 'axios';
+import { resolve } from 'dns';
 import { Renginys } from '../layout/models/renginys';
 
+const sleep = (delay: number) => {
+    return new Promise((resolve) =>{
+        setTimeout(resolve, delay)
+    })
+}
+
 axios.defaults.baseURL = 'http://localhost:5000/api';
+
+axios.interceptors.response.use(async response => {
+    try {
+        await sleep(1000);
+        return response;
+    } catch (klaida) {
+        console.log(klaida);
+        return await Promise.reject(klaida);
+    }
+})
 
 // type safety pridejimas
 const atsakymoTurinys = <T> (atsakymas: AxiosResponse<T>) => atsakymas.data;
