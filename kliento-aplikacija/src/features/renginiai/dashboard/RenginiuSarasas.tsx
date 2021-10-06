@@ -1,15 +1,11 @@
+import { observer } from "mobx-react-lite";
 import React, { SyntheticEvent, useState } from "react";
 import { Button, Item, Label, Segment } from "semantic-ui-react";
-import { Renginys } from "../../../app/layout/models/renginys";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-    renginiai: Renginys[];
-    pasirinktiRengini: (id: string) => void;
-    istrintiRengini: (id: string) => void;
-    irasymas: boolean;
-}
-
-export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiRengini, irasymas}: Props) {
+export default observer(function RenginiuSarasas() {
+    const {renginysStore} = useStore();
+    const {istrintiRengini, renginiaiPagalData, krovimasis} = renginysStore;
     const [target, setTarget] = useState('');
 
     function handleRenginioIstrynimas(e: SyntheticEvent<HTMLButtonElement>, id: string) {
@@ -20,7 +16,7 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiR
     return (
         <Segment>
             <Item.Group divided>
-                {renginiai.map(renginys => (
+                {renginiaiPagalData.map(renginys => (
                     <Item key={renginys.id}>
                         <Item.Content>
                             <Item.Header as='a'>{renginys.pavadinimas}</Item.Header>
@@ -30,9 +26,9 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiR
                                 <div>{renginys.renginioVieta}, {renginys.miestas}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='orange'/>
+                                <Button onClick={() => renginysStore.pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='orange'/>
                                 <Button 
-                                    loading={irasymas && target === renginys.id} 
+                                    loading={krovimasis && target === renginys.id} 
                                     onClick={(e) => handleRenginioIstrynimas(e, renginys.id)}
                                     floated='right' 
                                     content='Ištrinti' 
@@ -47,4 +43,4 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiR
             </Item.Group>
         </Segment>
     )
-}
+})

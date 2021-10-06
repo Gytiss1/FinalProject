@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
+import { useStore } from '../stores/store';
 
-interface Props {
-    atidarytiForma: () => void;
-}
+export default function NavBar() {
 
-export default function NavBar({atidarytiForma}:Props) {
+    const {renginysStore} = useStore();
+
     return (
         <Menu inverted fixed='top'>
             <Container>
@@ -15,7 +15,7 @@ export default function NavBar({atidarytiForma}:Props) {
                 </Menu.Item>
                 <Menu.Item name='Renginiai'/>
                 <Menu.Item>
-                    <Button onClick={atidarytiForma} positive content='Sukurti renginį'/>
+                    <Button onClick={() => renginysStore.atidarytiForma()} positive content='Sukurti renginį'/>
                 </Menu.Item>
             </Container>
         </Menu>

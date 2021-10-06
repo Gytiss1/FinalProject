@@ -1,15 +1,11 @@
+import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
-import { Renginys } from "../../../app/layout/models/renginys";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-    renginys: Renginys | undefined;
-    uzdarytiForma: () => void;
-    sukurtiArRedaguoti: (renginys: Renginys) => void;
-    irasymas: boolean;
-}
-
-export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiForma, sukurtiArRedaguoti, irasymas}: Props){
+export default observer(function RenginioForma(){
+    const {renginysStore} = useStore();
+    const {pasirinktasRenginys, uzdarytiForma, sukurtiRengini, atnaujintiRengini, krovimasis} = renginysStore;
 
     // suteikiu pradine busena formai, kad React galetu tikrinti ir irasyti kas ivedama
     const pradineBusena = pasirinktasRenginys ?? {
@@ -25,7 +21,7 @@ export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiFo
     const [renginys, setRenginys] = useState(pradineBusena);
 
     function handleIrasyti(){
-        sukurtiArRedaguoti(renginys);
+        renginys.id ? atnaujintiRengini(renginys) : sukurtiRengini(renginys);
     }
 
     // funkcija sekanti pakeitimus irasymo lauke ir juos submitinus
@@ -44,9 +40,9 @@ export default function RenginioForma({renginys: pasirinktasRenginys, uzdarytiFo
                 <Form.Input placeholder='Data' type='date' value={renginys.data} name='data' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Miestas' value={renginys.miestas} name='miestas' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginioVieta' onChange={handleIrasoPakeitimas}/>
-                <Button loading={irasymas} floated='right' positive type='submit' content='Įrašyti'/>
+                <Button loading={krovimasis} floated='right' positive type='submit' content='Įrašyti'/>
                 <Button onClick={uzdarytiForma} floated='right' type='button' content='Atšaukti'/>
             </Form>
         </Segment>
     )
-}
+})

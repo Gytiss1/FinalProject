@@ -1,14 +1,14 @@
-import React from "react";
 import { Button, Card, Image } from "semantic-ui-react";
-import { Renginys } from "../../../app/layout/models/renginys";
+import Krovimasis from "../../../app/layout/Krovimasis";
+import { useStore } from "../../../app/stores/store";
 
-interface Props {
-    renginys: Renginys;
-    atsauktiPasirinktaRengini: () => void;
-    atidarytiForma: (id: string) => void;
-}
 
-export default function RenginioDetales({renginys,atsauktiPasirinktaRengini,atidarytiForma}: Props) {
+export default function RenginioDetales() {
+    const {renginysStore} = useStore();
+    const {pasirinktasRenginys: renginys, atidarytiForma, atsauktiPasirinktaRengini} = renginysStore;
+
+    if (!renginys) return <Krovimasis />;
+
     return (
         <Card fluid>
             <Image src={`/assets/kategorijuVaizdai/${renginys.kategorija}.jpg`} />
