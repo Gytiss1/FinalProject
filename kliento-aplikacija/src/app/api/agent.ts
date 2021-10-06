@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from 'axios';
-import { resolve } from 'dns';
 import { Renginys } from '../layout/models/renginys';
 
 const sleep = (delay: number) => {
@@ -24,17 +23,17 @@ axios.interceptors.response.use(async response => {
 const atsakymoTurinys = <T> (atsakymas: AxiosResponse<T>) => atsakymas.data;
 
 const uzklausos = {
-    get: <T> (url:string) => axios.get<T>(url).then(atsakymoTurinys),
+    get: <T> (url: string) => axios.get<T>(url).then(atsakymoTurinys),
     post: <T> (url: string, turinys: {}) => axios.post<T>(url, turinys).then(atsakymoTurinys),
-    put: <T> (url:string, turinys: {}) => axios.put<T>(url, turinys).then(atsakymoTurinys),
-    del: <T> (url:string) => axios.delete<T>(url).then(atsakymoTurinys)
+    put: <T> (url: string, turinys: {}) => axios.put<T>(url, turinys).then(atsakymoTurinys),
+    del: <T> (url: string) => axios.delete<T>(url).then(atsakymoTurinys)
 }
 
 const Renginiai = {
     sarasas: () => uzklausos.get<Renginys[]>('/renginiai'),
     detales: (id:string) => uzklausos.get<Renginys>(`/renginiai/${id}`),
-    sukurti: (renginys: Renginys) => axios.post('/renginiai',renginys),
-    atnaujinti: (renginys: Renginys) => axios.put(`/renginiai/${renginys.id}`, renginys),
+    sukurti: (renginys: Renginys) => axios.post<void>('/renginiai',renginys),
+    atnaujinti: (renginys: Renginys) => axios.put<void>(`/renginiai/${renginys.id}`, renginys),
     istrinti: (id: string) => axios.delete<void>(`/renginiai/${id}`)
 }
 

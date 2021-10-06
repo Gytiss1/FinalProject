@@ -53,8 +53,8 @@ function App() {
 
   // tikrinu ar yra toks renginys duombazeje ir jeigu yra, pakeiciu ji tokiu pat objektu is formos
   function handleSukurtiArPakeistiRengini(renginys: Renginys) {
-    setIrasymas(true)
-    if  (renginys.id){
+    setIrasymas(true);
+    if  (renginys.id) {
       agent.Renginiai.atnaujinti(renginys).then(()=> {
         setRenginiai([...renginiai.filter(x => x.id !== renginys.id), renginys]);
         setPasirinktasRenginys(renginys);

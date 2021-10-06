@@ -12,7 +12,7 @@ interface Props {
 export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiRengini, irasymas}: Props) {
     const [target, setTarget] = useState('');
 
-    function handleRenginioIstrynimas(e: SyntheticEvent<HTMLButtonElement>, id:string) {
+    function handleRenginioIstrynimas(e: SyntheticEvent<HTMLButtonElement>, id: string) {
         setTarget(e.currentTarget.name);
         istrintiRengini(id);
     }
@@ -33,7 +33,7 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiR
                                 <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='orange'/>
                                 <Button 
                                     loading={irasymas && target === renginys.id} 
-                                    onClick={(e) => handleRenginioIstrynimas(e, renginys.id)} 
+                                    onClick={(e) => handleRenginioIstrynimas(e, renginys.id)}
                                     floated='right' 
                                     content='Ištrinti' 
                                     color='red'

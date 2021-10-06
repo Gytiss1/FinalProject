@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Duomenys;
@@ -15,7 +13,7 @@ namespace Aplikacija.Renginiai
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequest<Command>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)

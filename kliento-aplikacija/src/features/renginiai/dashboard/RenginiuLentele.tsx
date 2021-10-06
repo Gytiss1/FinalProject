@@ -19,6 +19,7 @@ interface Props {
 }
 
 export default function RenginiuLentele({
+    istrintiRengini,
     renginiai,
     pasirinktasRenginys,
     pasirinktiRengini,
@@ -27,7 +28,6 @@ export default function RenginiuLentele({
     atidarytiForma,
     uzdarytiForma,
     sukurtiArRedaguoti,
-    istrintiRengini,
     irasymas }: Props) {
 
     return (
