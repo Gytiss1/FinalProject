@@ -30,7 +30,7 @@ export default function RenginiuSarasas({renginiai, pasirinktiRengini, istrintiR
                                 <div>{renginys.renginioVieta}, {renginys.miestas}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='google plus'/>
+                                <Button onClick={() => pasirinktiRengini(renginys.id)} floated='right' content='Peržiūrėti' color='orange'/>
                                 <Button 
                                     loading={irasymas && target === renginys.id} 
                                     onClick={(e) => handleRenginioIstrynimas(e, renginys.id)} 

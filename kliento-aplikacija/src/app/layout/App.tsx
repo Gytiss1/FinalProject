@@ -13,7 +13,7 @@ function App() {
   const [pasirinktasRenginys, setPasirinktasRenginys] = useState<Renginys | undefined>(undefined);
   const [redagavimas, setRedagavimas] = useState(false);
   const [krovimas, setKrovimas] = useState(true);
-  const [irasyti, setIrasyti] = useState(false);
+  const [irasymas, setIrasymas] = useState(false);
 
   // AXIOS
   useEffect(() => {
@@ -53,13 +53,13 @@ function App() {
 
   // tikrinu ar yra toks renginys duombazeje ir jeigu yra, pakeiciu ji tokiu pat objektu is formos
   function handleSukurtiArPakeistiRengini(renginys: Renginys) {
-    setIrasyti(true)
+    setIrasymas(true)
     if  (renginys.id){
       agent.Renginiai.atnaujinti(renginys).then(()=> {
         setRenginiai([...renginiai.filter(x => x.id !== renginys.id), renginys]);
         setPasirinktasRenginys(renginys);
         setRedagavimas(false);
-        setIrasyti(false);
+        setIrasymas(false);
       })
     } else {
       renginys.id = uuid();
@@ -67,16 +67,16 @@ function App() {
       setRenginiai([...renginiai, renginys]);
       setPasirinktasRenginys(renginys);
       setRedagavimas(false);
-      setIrasyti(false);
+      setIrasymas(false);
       })
     }
   }
 
   function handleIstrintiRengini(id:string){
-    setIrasyti(true);
+    setIrasymas(true);
     agent.Renginiai.istrinti(id).then(() => {
       setRenginiai([...renginiai.filter(x => x.id !== id)]);
-      setIrasyti(false);
+      setIrasymas(false);
     })
   }
 
@@ -96,7 +96,7 @@ function App() {
           uzdarytiForma={handleFormosUzdarymas}
           sukurtiArRedaguoti={handleSukurtiArPakeistiRengini}
           istrintiRengini={handleIstrintiRengini}
-          irasymas={irasyti}
+          irasymas={irasymas}
         />
         </Container>
     </Fragment>

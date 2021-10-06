@@ -35,7 +35,7 @@ const Renginiai = {
     detales: (id:string) => uzklausos.get<Renginys>(`/renginiai/${id}`),
     sukurti: (renginys: Renginys) => axios.post('/renginiai',renginys),
     atnaujinti: (renginys: Renginys) => axios.put(`/renginiai/${renginys.id}`, renginys),
-    istrinti: (id:string) => axios.delete<void>(`/renginiai/${id}`)
+    istrinti: (id: string) => axios.delete<void>(`/renginiai/${id}`)
 }
 
 const agent = {
