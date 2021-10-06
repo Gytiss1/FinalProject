@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import './styles.css';
 import { Container } from 'semantic-ui-react';
 import {Renginys} from '../layout/models/renginys';
@@ -7,27 +7,21 @@ import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele'
 import {v4 as uuid} from 'uuid';
 import agent from '../api/agent';
 import Krovimasis from './Krovimasis';
+import { useStore } from '../stores/store';
+import { observer } from 'mobx-react-lite';
 
 function App() {
+  const {renginysStore} = useStore();
+
   const [renginiai, setRenginiai] = useState<Renginys[]>([]);
   const [pasirinktasRenginys, setPasirinktasRenginys] = useState<Renginys | undefined>(undefined);
   const [redagavimas, setRedagavimas] = useState(false);
-  const [krovimas, setKrovimas] = useState(true);
   const [irasymas, setIrasymas] = useState(false);
 
   // AXIOS
   useEffect(() => {
-    agent.Renginiai.sarasas().then(atsakymas => {
-      let renginiai: Renginys[] = [];
-      atsakymas.forEach(renginys => {
-        renginys.data = renginys.data.split('T')[0];
-        renginiai.push(renginys);
-      })
-      setRenginiai(renginiai);
-      // paslepiu krovima suradus renginius
-      setKrovimas(false);
-    })
-  }, [])
+    renginysStore.uzkrautiRenginius();
+  }, [renginysStore]) 
 
   // surandu rengini pagal id kuris perduotas is mygtuko paspaudimo
   function handlePasirinktasRenginys(id: string){
@@ -80,14 +74,14 @@ function App() {
     })
   }
 
-  if (krovimas) return <Krovimasis content='Programa kraunama...' />
+  if (renginysStore.krovimasisPradinis) return <Krovimasis content='Programa kraunama...' />
 
   return (
     <Fragment>
       <NavBar atidarytiForma={handleFormosAtidaryma}/>
       <Container style={{marginTop:'5em'}}>
         <RenginiuLentele 
-          renginiai={renginiai}
+          renginiai={renginysStore.renginiai}
           pasirinktasRenginys={pasirinktasRenginys}
           pasirinktiRengini={handlePasirinktasRenginys}
           atsauktiPasirinktaRengini={handleAtsauktiPasirinktasRenginys}
@@ -103,4 +97,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App); 
