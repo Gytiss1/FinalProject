@@ -10,12 +10,24 @@ export default class RenginysStore {
     krovimasis = false;
     krovimasisPradinis = true;
 
+    // stebiu visu elementu busena
     constructor() {
         makeAutoObservable(this)
     }
 
     get renginiaiPagalData() {
         return Array.from(this.renginiuRegistras.values()).sort((a,b) => Date.parse(a.data) - Date.parse(b.data))
+    }
+
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    get grupuotiRenginius() {
+        return Object.entries(
+            this.renginiaiPagalData.reduce((renginiai, renginys) => {
+                const data = renginys.data;
+                renginiai[data] = renginiai[data] ? [...renginiai[data], renginys] : [renginys];
+                return renginiai;
+            }, {} as {[key: string]: Renginys[]})
+        )
     }
 
     // https://mobx.js.org/actions.html
