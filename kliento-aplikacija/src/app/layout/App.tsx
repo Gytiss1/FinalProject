@@ -15,15 +15,22 @@ function App() {
 
   return (
     <>
-      <NavBar />
-      <Container style={{marginTop:'5em'}}>
-        <Route exact path='/' component={Pradinis} />
-        <Route exact path='/renginiai' component={RenginiuLentele} />
-        <Route path='/renginiai/:id' component={RenginioDetales} />
-        <Route key={location.key} path={['/sukurtiRengini', '/redaguoti/:id']} component={RenginioForma} />
-      </Container>
+      <Route exact path='/' component={Pradinis} />
+      <Route
+        path={'/(.+)'}
+        render={() => (
+          <>
+            <NavBar />
+            <Container style={{ marginTop: '5em' }}>
+              <Route exact path='/renginiai' component={RenginiuLentele} />
+              <Route path='/renginiai/:id' component={RenginioDetales} />
+              <Route key={location.key} path={['/sukurtiRengini', '/redaguoti/:id']} component={RenginioForma} />
+            </Container>
+          </>
+        )}
+      />
     </>
   );
 }
 
-export default observer(App); 
+export default observer(App);

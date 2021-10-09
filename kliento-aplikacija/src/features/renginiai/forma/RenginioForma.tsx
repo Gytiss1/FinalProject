@@ -5,6 +5,7 @@ import { Button, Form, Segment } from "semantic-ui-react";
 import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
 import {v4 as uuid} from 'uuid';
+import { Link } from "react-router-dom";
 
 export default observer(function RenginioForma(){
     const istorija = useHistory();
@@ -59,7 +60,7 @@ export default observer(function RenginioForma(){
                 <Form.Input placeholder='Miestas' value={renginys.miestas} name='miestas' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginioVieta' onChange={handleIrasoPakeitimas}/>
                 <Button loading={krovimasis} floated='right' positive type='submit' content='Įrašyti'/>
-                <Button floated='right' type='button' content='Atšaukti'/>
+                <Button as={Link} to='/renginiai' floated='right' type='button' content='Atšaukti'/> 
             </Form>
         </Segment>
     )

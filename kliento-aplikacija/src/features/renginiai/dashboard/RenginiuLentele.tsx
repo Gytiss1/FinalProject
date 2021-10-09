@@ -7,11 +7,14 @@ import RenginiuSarasas from "./RenginiuSarasas";
 
 export default observer(function RenginiuLentele() {
     const {renginysStore} = useStore();
+    // parsitempiu renginiu sarasa is store
+    const {uzkrautiRenginius, renginiuRegistras} = renginysStore;
 
     // AXIOS
     useEffect(() => {
-      renginysStore.uzkrautiRenginius();
-    }, [renginysStore]) 
+        // tikrinu ar jau uzkrauti renginiai is duombazes
+      if (renginiuRegistras.size <= 1) uzkrautiRenginius();
+    }, [renginiuRegistras.size, uzkrautiRenginius]) 
   
     if (renginysStore.krovimasisPradinis) return <Krovimasis content='Programa kraunama...' /> 
 
