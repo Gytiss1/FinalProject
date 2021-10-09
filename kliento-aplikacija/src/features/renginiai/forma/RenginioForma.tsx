@@ -1,11 +1,13 @@
 import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Button, Form, Segment } from "semantic-ui-react";
 import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
+import {v4 as uuid} from 'uuid';
 
 export default observer(function RenginioForma(){
+    const istorija = useHistory();
     const {renginysStore} = useStore();
     const {sukurtiRengini, atnaujintiRengini, krovimasis, uzkrautiRengini, krovimasisPradinis} = renginysStore;
     const {id} = useParams<{id: string}>();
@@ -26,7 +28,16 @@ export default observer(function RenginioForma(){
     }, [id, uzkrautiRengini]);
 
     function handleIrasyti(){
-        renginys.id ? atnaujintiRengini(renginys) : sukurtiRengini(renginys);
+        // jeigu yra id - redaguoju, jeigu ne - kuriu
+        if (renginys.id.length === 0) {
+            let naujasRenginys = {
+                ...renginys,
+                id: uuid()
+            };
+            sukurtiRengini(naujasRenginys).then(() => istorija.push(`/renginiai/${naujasRenginys.id}`));
+        } else {
+            atnaujintiRengini(renginys).then(() => istorija.push(`/renginiai/${renginys.id}`));
+        }
     }
 
     // funkcija sekanti pakeitimus irasymo lauke ir juos submitinus

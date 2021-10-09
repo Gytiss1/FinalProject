@@ -10,6 +10,7 @@ import RenginioForma from '../../features/renginiai/forma/RenginioForma';
 import RenginioDetales from '../../features/renginiai/detales/RenginioDetales';
 
 function App() {
+  // https://reactrouter.com/web/api/Hooks/uselocation
   const location = useLocation();
 
   return (

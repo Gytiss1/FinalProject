@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Renginys } from "../layout/models/renginys";
-import {v4 as uuid} from 'uuid';
 
 export default class RenginysStore {
     // JS mappingas
@@ -74,7 +73,6 @@ export default class RenginysStore {
     // tikrinu ar yra toks renginys duombazeje ir jeigu yra, pakeiciu ji tokiu pat objektu is formos
     sukurtiRengini = async (renginys: Renginys) => {
         this.krovimasis = true;
-        renginys.id = uuid();
         try {
             await agent.Renginiai.sukurti(renginys);
             runInAction(() => {
