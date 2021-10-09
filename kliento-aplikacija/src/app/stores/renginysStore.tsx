@@ -21,12 +21,11 @@ export default class RenginysStore {
 
     // https://mobx.js.org/actions.html
     uzkrautiRenginius = async () => {
+        this.krovimasisPradinis = true;
         try {
             const renginiai = await agent.Renginiai.sarasas();
                 renginiai.forEach(renginys => {
-                    renginys.data = renginys.data.split('T')[0];
-                    // antipatternas reduxui, tinkamas MobX
-                    this.renginiuRegistras.set(renginys.id, renginys);
+                    this.nustatytiRengini(renginys);
                   })
                   this.setKrovimasisPradinis(false);
         } catch (klaida) {
@@ -35,30 +34,41 @@ export default class RenginysStore {
         }
     }
 
+    uzkrautiRengini = async (id:string) => {
+        // patikrinu ar yra renginys
+        let renginys = this.gautiRengini(id);
+        if (renginys) {
+            this.pasirinktasRenginys = renginys;
+            return renginys;
+        } else {
+            this.krovimasisPradinis = true;
+            try {
+                renginys = await agent.Renginiai.detales(id);
+                this.nustatytiRengini(renginys);
+                runInAction(() => {
+                    this.pasirinktasRenginys = renginys;
+                })
+                this.setKrovimasisPradinis(false);
+                return renginys; 
+            } catch (klaida) {
+                console.log(klaida);
+                this.setKrovimasisPradinis(false);
+            }
+        }
+    }
+
+    private nustatytiRengini = (renginys: Renginys) => {
+        renginys.data = renginys.data.split('T')[0];
+        // antipatternas reduxui, tinkamas MobX
+        this.renginiuRegistras.set(renginys.id, renginys);
+    }
+
+    private gautiRengini = (id: string) => {
+        return this.renginiuRegistras.get(id);
+    }
+
     setKrovimasisPradinis = (state: boolean) => {
         this.krovimasisPradinis = state;
-    }
-
-    // surandu rengini pagal id kuris perduotas is mygtuko paspaudimo
-    pasirinktiRengini = (id: string) => {
-        this.pasirinktasRenginys = this.renginiuRegistras.get(id);
-    }
-
-    // nunulinu id ir detaliu tooltip dingsta
-    // https://stackoverflow.com/questions/24502898/show-or-hide-element-in-react
-    atsauktiPasirinktaRengini = () => {
-        this.pasirinktasRenginys = undefined;
-    }
-
-    // perduodamas id is renginio objekto ir nustatomas pasirinkimo funkcijai
-    atidarytiForma = (id?: string) => {
-        id ? this.pasirinktiRengini(id) : this.atsauktiPasirinktaRengini();
-        this.redagavimoRezimas = true;
-    }
-
-    // paspaudus atsaukti nunulinamas propsas
-    uzdarytiForma = () => {
-        this.redagavimoRezimas = false;
     }
 
     // tikrinu ar yra toks renginys duombazeje ir jeigu yra, pakeiciu ji tokiu pat objektu is formos
@@ -107,7 +117,6 @@ export default class RenginysStore {
             await agent.Renginiai.istrinti(id);
             runInAction (() => {
                 this.renginiuRegistras.delete(id)
-                if (this.pasirinktasRenginys?.id === id) this.atsauktiPasirinktaRengini();
                 this.krovimasis = false;
             })
         } catch (klaida) {

@@ -1,13 +1,23 @@
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { Button, Card, Image } from "semantic-ui-react";
 import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
 
 
-export default function RenginioDetales() {
+export default observer(function RenginioDetales() {
     const {renginysStore} = useStore();
-    const {pasirinktasRenginys: renginys, atidarytiForma, atsauktiPasirinktaRengini} = renginysStore;
+    const {pasirinktasRenginys: renginys, uzkrautiRengini, krovimasisPradinis} = renginysStore;
+    // surisu linkus su objektais
+    const {id} = useParams<{id: string}>();
 
-    if (!renginys) return <Krovimasis />;
+    useEffect(() => {
+        if (id) uzkrautiRengini(id);
+    }, [id, uzkrautiRengini])
+
+    if (krovimasisPradinis || !renginys) return <Krovimasis />;
 
     return (
         <Card fluid>
@@ -23,10 +33,10 @@ export default function RenginioDetales() {
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => atidarytiForma(renginys.id)} basic color='orange' content='Redaguoti'/>
-                    <Button onClick={atsauktiPasirinktaRengini} basic color='red' content='Atšaukti'/>
+                    <Button as={Link} to={`/redaguoti/${renginys.id}`} basic color='orange' content='Redaguoti'/>
+                    <Button as={Link} to='/renginiai' basic color='red' content='Atšaukti'/>
                 </Button.Group>
             </Card.Content>
         </Card>
     )
-}
+})

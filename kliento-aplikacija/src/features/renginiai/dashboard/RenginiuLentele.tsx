@@ -3,13 +3,10 @@ import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
-import RenginioDetales from "../detales/RenginioDetales";
-import RenginioForma from "../forma/RenginioForma";
 import RenginiuSarasas from "./RenginiuSarasas";
 
 export default observer(function RenginiuLentele() {
     const {renginysStore} = useStore();
-    const {pasirinktasRenginys, redagavimoRezimas} = renginysStore;
 
     // AXIOS
     useEffect(() => {
@@ -24,10 +21,7 @@ export default observer(function RenginiuLentele() {
                 <RenginiuSarasas />
             </Grid.Column>
             <Grid.Column width='6'>
-                {pasirinktasRenginys && !redagavimoRezimas &&
-                    <RenginioDetales />}
-                    {redagavimoRezimas &&
-                    <RenginioForma />}
+                <h2>Filtruoti renginius</h2>
             </Grid.Column>
         </Grid>
     )

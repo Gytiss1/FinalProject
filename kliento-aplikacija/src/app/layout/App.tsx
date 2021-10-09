@@ -7,18 +7,20 @@ import { observer } from 'mobx-react-lite';
 import { Route } from 'react-router';
 import Pradinis from '../../features/home/HomePage';
 import RenginioForma from '../../features/renginiai/forma/RenginioForma';
+import RenginioDetales from '../../features/renginiai/detales/RenginioDetales';
 
 function App() {
 
   return (
-    <Fragment>
+    <>
       <NavBar />
       <Container style={{marginTop:'5em'}}>
         <Route exact path='/' component={Pradinis} />
-        <Route path='/renginiai' component={RenginiuLentele} />
-        <Route path='/sukurtiRengini' component={RenginioForma} />
+        <Route exact path='/renginiai' component={RenginiuLentele} />
+        <Route path='/renginiai/:id' component={RenginioDetales} />
+        <Route path={['/sukurtiRengini', '/redaguoti/:id']} component={RenginioForma} />
       </Container>
-    </Fragment>
+    </>
   );
 }
 

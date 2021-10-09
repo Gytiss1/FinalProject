@@ -1,14 +1,16 @@
 import { observer } from "mobx-react-lite";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { Button, Form, Segment } from "semantic-ui-react";
+import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function RenginioForma(){
     const {renginysStore} = useStore();
-    const {pasirinktasRenginys, uzdarytiForma, sukurtiRengini, atnaujintiRengini, krovimasis} = renginysStore;
-
-    // suteikiu pradine busena formai, kad React galetu tikrinti ir irasyti kas ivedama
-    const pradineBusena = pasirinktasRenginys ?? {
+    const {sukurtiRengini, atnaujintiRengini, krovimasis, uzkrautiRengini, krovimasisPradinis} = renginysStore;
+    const {id} = useParams<{id: string}>();
+    const [renginys, setRenginys] = useState({
+        // suteikiu pradine busena formai, kad React galetu tikrinti ir irasyti kas ivedama
         id:'',
         aprasymas:'',
         pavadinimas:'',
@@ -16,9 +18,12 @@ export default observer(function RenginioForma(){
         data:'',
         miestas:'',
         renginioVieta:''
-    }
+    });
 
-    const [renginys, setRenginys] = useState(pradineBusena);
+    // kodas yra vykdomas tik tada kai keiciasi busena
+    useEffect (() => {
+        if (id) uzkrautiRengini(id).then(renginys => setRenginys(renginys!))
+    }, [id, uzkrautiRengini]);
 
     function handleIrasyti(){
         renginys.id ? atnaujintiRengini(renginys) : sukurtiRengini(renginys);
@@ -31,6 +36,8 @@ export default observer(function RenginioForma(){
         setRenginys({...renginys, [name]: value})
     }
 
+    if (krovimasisPradinis) return <Krovimasis content='Kraunamas renginys...' />
+
     return (
         <Segment clearing>
             <Form onSubmit={handleIrasyti} autoComplete='off' >
@@ -41,7 +48,7 @@ export default observer(function RenginioForma(){
                 <Form.Input placeholder='Miestas' value={renginys.miestas} name='miestas' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginioVieta' onChange={handleIrasoPakeitimas}/>
                 <Button loading={krovimasis} floated='right' positive type='submit' content='Įrašyti'/>
-                <Button onClick={uzdarytiForma} floated='right' type='button' content='Atšaukti'/>
+                <Button floated='right' type='button' content='Atšaukti'/>
             </Form>
         </Segment>
     )
