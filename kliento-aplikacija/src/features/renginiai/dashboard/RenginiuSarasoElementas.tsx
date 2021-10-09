@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Item, Label } from "semantic-ui-react";
+import { Button, Icon, Item, Label, Segment } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
 import { useStore } from "../../../app/stores/store";
 
@@ -20,27 +20,33 @@ export default function RenginiuSarasoElementas({renginys}: Props) {
     }
 
     return (
-        <Item key={renginys.id}>
-            <Item.Content>
-                <Item.Header as='a'>{renginys.pavadinimas}</Item.Header>
-                <Item.Meta>{renginys.data}</Item.Meta>
-                <Item.Description>
-                    <div>{renginys.aprasymas}</div>
-                    <div>{renginys.renginioVieta}, {renginys.miestas}</div>
-                </Item.Description>
-                <Item.Extra>
-                    <Button as={Link} to={`/renginiai/${renginys.id}`} floated='right' content='Peržiūrėti' color='orange' />
-                    <Button
-                        loading={krovimasis && target === renginys.id}
-                        onClick={(e) => handleRenginioIstrynimas(e, renginys.id)}
-                        floated='right'
-                        content='Ištrinti'
-                        color='red'
-                        name={renginys.id}
-                    />
-                    <Label basic content={renginys.kategorija} />
-                </Item.Extra>
-            </Item.Content>
-        </Item>
+        <Segment.Group>
+            <Segment>
+                <Item.Group>
+                    <Item>
+                        <Item.Image size='tiny' circular src='/assets/vartotojas.png' />
+                        <Item.Content>
+                            <Item.Header as={Link} to={`/renginiai/${renginys.id}`} >{renginys.pavadinimas}</Item.Header>
+                            <Item.Description>Sukurtas Jono Jonaičio</Item.Description>
+                        </Item.Content>
+                    </Item>
+                </Item.Group>
+            </Segment>
+            <Segment>
+                <span>
+                    <Icon name='clock' /> {renginys.data}
+                    <Icon name='marker' /> {renginys.renginioVieta}
+                </span>
+            </Segment>
+            <Segment secondary>
+                Dalyviai
+            </Segment>
+            <Segment clearing>
+                <span>
+                    {renginys.aprasymas}
+                </span>
+                <Button as={Link} to={`/renginiai/${renginys.id}`} color='orange' content='Pažiūrėti' floated='right' />
+            </Segment>
+        </Segment.Group>
     )
 }

@@ -16,13 +16,9 @@ export default observer(function RenginiuSarasas() {
                     <Header sub color='yellow'>
                         {grupe}
                     </Header>
-                    <Segment>
-                        <Item.Group divided>
-                            {renginiai.map(renginys => (
-                                <RenginiuSarasoElementas key={renginys.id} renginys={renginys} />
-                            ))}
-                        </Item.Group>
-                    </Segment>
+                    {renginiai.map(renginys => (
+                        <RenginiuSarasoElementas key={renginys.id} renginys={renginys} />
+                    ))}
                 </Fragment>
             ))}
         </>
