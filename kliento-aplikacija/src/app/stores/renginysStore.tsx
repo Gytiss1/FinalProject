@@ -4,6 +4,7 @@ import { Renginys } from "../layout/models/renginys";
 import {v4 as uuid} from 'uuid';
 
 export default class RenginysStore {
+    // JS mappingas
     renginiuRegistras = new Map<string, Renginys>();
     pasirinktasRenginys: Renginys | undefined = undefined;
     redagavimoRezimas = false;
@@ -18,12 +19,13 @@ export default class RenginysStore {
         return Array.from(this.renginiuRegistras.values()).sort((a,b) => Date.parse(a.data) - Date.parse(b.data))
     }
 
+    // https://mobx.js.org/actions.html
     uzkrautiRenginius = async () => {
         try {
             const renginiai = await agent.Renginiai.sarasas();
                 renginiai.forEach(renginys => {
                     renginys.data = renginys.data.split('T')[0];
-                    // antipatternas reduxui
+                    // antipatternas reduxui, tinkamas MobX
                     this.renginiuRegistras.set(renginys.id, renginys);
                   })
                   this.setKrovimasisPradinis(false);
