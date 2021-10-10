@@ -1,9 +1,18 @@
 import React from 'react'
-import { Segment, List, Label, Item, Image } from 'semantic-ui-react'
+import { Segment, List, Label, Item, Image, Header, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
+import { useStore } from '../../../app/stores/store'
+import { Renginys } from '../../../app/layout/models/renginys'
 
-export default observer(function RenginioDetaliuSoninis () {
+interface Props {
+    renginys: Renginys
+}
+
+export default observer(function RenginioDetaliuSoninis ({renginys}: Props) {
+    const {renginysStore} = useStore();
+    const {istrintiRengini, krovimasis} = renginysStore;
+
     return (
         <>
             <Segment
@@ -53,6 +62,10 @@ export default observer(function RenginioDetaliuSoninis () {
                         </Item.Content>
                     </Item>
                 </List>
+            </Segment>
+            <Segment clearing>
+                <Header content='Renginio administravimas' as='h3' />
+                <Button onClick={() => istrintiRengini(renginys.id)} floated='left' content='Ištrinti renginį' color='red' loading={krovimasis} />
             </Segment>
         </>
 

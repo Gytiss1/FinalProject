@@ -60,7 +60,7 @@ export default observer(function RenginioForma(){
                 <Form.Input placeholder='Miestas' value={renginys.miestas} name='miestas' onChange={handleIrasoPakeitimas}/>
                 <Form.Input placeholder='Renginio vieta' value={renginys.renginioVieta} name='renginioVieta' onChange={handleIrasoPakeitimas}/>
                 <Button loading={krovimasis} floated='right' positive type='submit' content='Įrašyti'/>
-                <Button as={Link} to='/renginiai' floated='right' type='button' content='Atšaukti'/> 
+                <Button as={Link} to={`/renginiai/${renginys.id}`} floated='right' type='button' content='Atšaukti'/> 
             </Form>
         </Segment>
     )

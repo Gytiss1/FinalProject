@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
+import { Link } from 'react-router-dom';
 import {Button, Header, Item, Segment, Image} from 'semantic-ui-react'
 import { Renginys } from '../../../app/layout/models/renginys';
 
@@ -46,7 +47,7 @@ export default observer (function RenginioDetaliuAntraste({renginys}: Props) {
             <Segment clearing attached='bottom'>
                 <Button positive>Dalyvauti</Button>
                 <Button>Atšaukti dalyvavimą</Button>
-                <Button color='orange' floated='right'>
+                <Button as={Link} to={`/redaguoti/${renginys.id}`} color='orange' floated='right'>
                     Tvarkyti renginį
                 </Button>
             </Segment>

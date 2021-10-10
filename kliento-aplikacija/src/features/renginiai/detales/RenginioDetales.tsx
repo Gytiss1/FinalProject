@@ -30,7 +30,7 @@ export default observer(function RenginioDetales() {
                 <RenginioDetaliuKomentarai />
             </Grid.Column>
             <Grid.Column width={6}>
-                <RenginioDetaliuSoninis />
+                <RenginioDetaliuSoninis renginys={renginys} />
             </Grid.Column>
         </Grid>
     )
