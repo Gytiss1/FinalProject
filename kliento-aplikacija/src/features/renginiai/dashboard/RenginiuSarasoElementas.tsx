@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Icon, Item, Label, Segment } from "semantic-ui-react";
+import { Button, Icon, Item, Segment } from "semantic-ui-react";
 import { Renginys } from "../../../app/layout/models/renginys";
 import { useStore } from "../../../app/stores/store";
 

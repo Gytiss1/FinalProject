@@ -2,9 +2,13 @@ import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { Button, Card, Image } from "semantic-ui-react";
+import { Button, Card, Grid, Image } from "semantic-ui-react";
 import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
+import RenginioDetaliuAntraste from "./RenginioDetaliuAntraste";
+import RenginioDetaliuInfo from "./RenginioDetaliuInfo";
+import RenginioDetaliuKomentarai from "./RenginioDetaliuKomentarai";
+import RenginioDetaliuSoninis from "./RenginioDetaliuSoninis";
 
 
 export default observer(function RenginioDetales() {
@@ -20,23 +24,15 @@ export default observer(function RenginioDetales() {
     if (krovimasisPradinis || !renginys) return <Krovimasis />;
 
     return (
-        <Card fluid>
-            <Image src={`/assets/kategorijuVaizdai/${renginys.kategorija}.jpg`} />
-            <Card.Content>
-                <Card.Header>{renginys.pavadinimas}</Card.Header>
-                <Card.Meta>
-                    <span>{renginys.data}</span>
-                </Card.Meta>
-                <Card.Description>
-                    {renginys.aprasymas}
-                </Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-                <Button.Group widths='2'>
-                    <Button as={Link} to={`/redaguoti/${renginys.id}`} basic color='orange' content='Redaguoti'/>
-                    <Button as={Link} to='/renginiai' basic color='red' content='Atšaukti'/>
-                </Button.Group>
-            </Card.Content>
-        </Card>
+        <Grid>
+            <Grid.Column width={10}>
+                <RenginioDetaliuAntraste />
+                <RenginioDetaliuInfo />
+                <RenginioDetaliuKomentarai />
+            </Grid.Column>
+            <Grid.Column width={6}>
+                <RenginioDetaliuSoninis />
+            </Grid.Column>
+        </Grid>
     )
 })
