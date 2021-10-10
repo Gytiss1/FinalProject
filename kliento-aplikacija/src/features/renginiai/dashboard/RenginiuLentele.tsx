@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import Krovimasis from "../../../app/layout/Krovimasis";
 import { useStore } from "../../../app/stores/store";
+import RenginiuFiltras from "./RenginiuFiltras";
 import RenginiuSarasas from "./RenginiuSarasas";
 
 export default observer(function RenginiuLentele() {
@@ -24,7 +25,7 @@ export default observer(function RenginiuLentele() {
                 <RenginiuSarasas />
             </Grid.Column>
             <Grid.Column width='6'>
-                <h2>Filtruoti renginius</h2>
+                <RenginiuFiltras />
             </Grid.Column>
         </Grid>
     )

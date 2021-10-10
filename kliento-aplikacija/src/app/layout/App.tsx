@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 import RenginiuLentele from '../../features/renginiai/dashboard/RenginiuLentele';
 import { observer } from 'mobx-react-lite';
 import { Route, useLocation } from 'react-router';
-import Pradinis from '../../features/home/HomePage';
+import Pradinis from '../../features/home/Pradinis';
 import RenginioForma from '../../features/renginiai/forma/RenginioForma';
 import RenginioDetales from '../../features/renginiai/detales/RenginioDetales';
 

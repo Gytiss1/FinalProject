@@ -2,14 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Container, Menu } from 'semantic-ui-react';
 
-export default function NavBar() {
+export default function Navigacija() {
 
     return (
         <Menu inverted fixed='top'>
             <Container>
                 <Menu.Item header as={NavLink} exact to='/'>
                     <img src="assets/logo.png" alt="logotipas" style={{marginRight: '15px'}}/>
-                    Ką veikti Lietuvoje?
+                    Veikli Lietuva!
                 </Menu.Item>
                 <Menu.Item name='Renginiai' as={NavLink} to='/renginiai'/>
                 <Menu.Item>

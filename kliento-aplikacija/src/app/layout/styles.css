@@ -1,7 +1,80 @@
+/*global elementu stilius*/
+
 body {
   background-color: #F2ECE4;
 }
 
 .ui.inverted.top.fixed.menu {
-  background-image: linear-gradient(135deg, #F2D125 0%, #E7A11E 50%) !important;
+  background-image: linear-gradient(
+    120deg, 
+    #F2D125 0%,
+    #F5B123 69%,
+    #E7A11E 89%) !important;
 }
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+  border-radius: .28571429rem;
+}
+
+.ui.positive.button {
+  background-color: #2A563A;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.orange.button {
+  background-color: #F5B123;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+i.orange.icon {
+  color: #F5B123 !important;
+}
+
+.ui.inverted.orange.segment {
+  background-color: #F5B123 !important;
+  color: #fff !important;
+}
+
+.ui.orange.header {
+  color: #F5B123 !important;
+}
+
+/*---------------------------------------*/
+
+/*pagrindinio puslapio stilius*/
+
+.pradinisHead {
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(
+          135deg,
+          #F2D125 0%,
+          #F5B123 69%,
+          #E7A11E 89%
+  ) !important;
+  height: 100vh;
+}
+
+.pradinisHead .ui.menu .ui.button,
+.ui.menu a.ui.inverted.button {
+  margin-left: 0.5em;
+}
+
+.pradinisHead h1.ui.header {
+  font-size: 4em;
+  font-weight: normal;
+}
+
+.pradinisHead h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+}
+
+/*-------------------------------------*/
