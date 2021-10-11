@@ -128,6 +128,7 @@ export default class RenginysStore {
             runInAction (() => {
                 this.renginiuRegistras.delete(id)
                 this.krovimasis = false;
+
             })
         } catch (klaida) {
             console.log(klaida);

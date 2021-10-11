@@ -65,7 +65,7 @@ export default observer(function RenginioDetaliuSoninis ({renginys}: Props) {
             </Segment>
             <Segment clearing>
                 <Header content='Renginio administravimas' as='h3' />
-                <Button onClick={() => istrintiRengini(renginys.id)} floated='left' content='Ištrinti renginį' color='red' loading={krovimasis} />
+                <Button onClick={() => istrintiRengini(renginys.id)} floated='left' content='Ištrinti renginį' color='red' loading={krovimasis} as={Link} to={`/renginiai`} />
             </Segment>
         </>
 
